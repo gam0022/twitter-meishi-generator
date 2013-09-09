@@ -1,0 +1,9 @@
+*.swp
+.DS_Store
+
+*.log
+*.cer
+*.backup
+
+config.yaml
+profile_images/*.*

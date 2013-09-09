@@ -1,0 +1,10 @@
+.DS_Store
+*.swp
+*.db
+*.log
+*.cer
+*.backup
+*.yaml
+
+logs/
+profile_images/
