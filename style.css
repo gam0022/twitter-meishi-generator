@@ -1,0 +1,16 @@
+table img {
+  margin:   0px;
+  padding:  0px;
+  border: solid 10px white;
+}
+
+img.active {
+  margin:   0px;
+  padding:  0px;
+  border: solid 10px #bbb;
+}
+
+canvas {
+  display: block;
+  margin-bottom: 20px;
+}

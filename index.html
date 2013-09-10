@@ -97,15 +97,58 @@
 
     <div class="container">
 
-      <form>
-        <label>TwitterID</label>
-        <input id="screen_name" type="text" placeholder="TwitterID" value="gam0022" />
-        <input type="button" value="generate" onclick="generate()" />
-        <input type="button" value="save" onclick="save()" />
-      </form>
+      <div class="row">
 
-      <canvas id="canvas" width="455" height="275"></canvas>
+        <div class="span6">
 
+          <h4><a class="btn btn-info">1</a> TwitterID</h4>
+
+          <form class="form-inline">
+            <input id="screen_name" type="text" placeholder="Twitter ID" value="gam0022">
+            <button type="button" class="btn" onclick="generate()">Generate</button>
+          </form>
+
+          <h4><a class="btn btn-info">2</a> Design</h4>
+
+          <div id="myCarousel" class="carousel slide" style="width:480px; height:250px;">
+            <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+              <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <!-- Carousel items -->
+            <div class="carousel-inner">
+              <div class="active item">
+                <table align="center">
+                  <tr>
+                    <td><img src="thumbnail_images/design-a.png" class="active" width="150px"></td>
+                    <td><img src="thumbnail_images/design-a.png" width="150px"></td>
+                  </tr>
+                  <tr>
+                    <td><img src="thumbnail_images/design-a.png" width="150px"></td>
+                    <td><img src="thumbnail_images/design-a.png" width="150px"></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="item">…</div>
+              <div class="item">…</div>
+            </div>
+            <!-- Carousel nav -->
+            <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+          </div>
+        </div>
+
+        <div class="span6">
+          <div class="well">
+            <h4><a class="btn btn-success">3</a> Preview</h4>
+
+            <canvas id="canvas" width="455" height="275"></canvas>
+            <button type="button" class="btn btn-primary" onclick="save()">Save as PNG</button>
+          </div>
+        </div>
+
+      </div>
     </div> <!-- /container -->
 
     <!-- Le javascript
