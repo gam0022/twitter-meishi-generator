@@ -8,6 +8,8 @@ var MH = 275;
 
 var selected_design_name;
 
+var json_cached;
+
 // http://ninoha.com/?p=60
 /*
       文字列を指定幅ごとに区切る
@@ -64,7 +66,7 @@ function generate() {
       {"screen_name": screen_name},
 
       function(data) {
-        var json = $.parseJSON(data);
+        var json = json_cached = $.parseJSON(data);
         draw_functions[selected_design_name].call(this, json);
       });
 }
@@ -85,7 +87,11 @@ function select_design(name) {
   $('a#design_a_' + selected_design_name).first().removeClass('active');
   selected_design_name = name;
   $('a#design_a_' + selected_design_name).first().addClass('active');
-  generate();
+  if (json_cached != null) {
+    draw_functions[selected_design_name].call(this, json_cached);
+  } else {
+    generate();
+  }
 }
 
 $(function() {
