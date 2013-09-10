@@ -84,7 +84,7 @@ function draw_design_a(json) {
 
       var ary = multilineText(context, name, 150);
       for (var i = 0; i < ary.length; ++i) {
-        context.fillText(ary[i], (MW-150), 90 + 25*i);
+        context.fillText(ary[i], (MW-150), 90 + 15*i);
       }
 
       var ary = multilineText(context, description, 300);

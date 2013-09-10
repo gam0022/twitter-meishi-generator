@@ -1,21 +1,128 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
   <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8">
     <title>TMG = Twitter名刺ジェネレータ</title>
     <script src="jquery-2.0.3.min.js"></script>
     <script src="functions.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--meta name="viewport" content="width=600"-->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+
+    <!-- matrix engine -->
+    <!--meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1" /-->
   </head>
 
   <body>
-    <form>
-      <label>TwitterID</label>
-      <input id="screen_name" type="text" placeholder="TwitterID" value="gam0022" />
-      <input type="button" value="generate" onclick="generate()" />
-      <input type="button" value="save" onclick="save()" />
-    </form>
 
-    <canvas id="canvas" width="455" height="275"></canvas>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">TMG <small>Twitter Meishi Generator</small></a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="#about" data-toggle="modal"><i class="icon-question-sign icon-white"></i>About</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+
+    <!-- About Modal -->
+    <div id="about" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">About</h3>
+      </div>
+      <div class="modal-body">
+
+        <p>より詳しい情報については
+        <a class="btn" href="manual.html">Manual</a>
+        を御覧ください。</p>
+
+        <legend>What's this?</legend>
+
+        <p>通販会社「千趣会」のカバンのネット通販用のWebアプリケーションです。</p>
+
+        <legend>Selling Point</legend>
+
+        <p>「機能的で使いやすい」をコンセプトに開発をしました。</p>
+
+        <ul>
+          <li>誰にでも優しい直感的な操作。</li>
+          <li>EaseOutを用いた滑らかな回転。</li>
+          <li>商品の検索をサポートする実用的なソート機能。</li>
+          <li>PCでもNexus7でも快適に動作。</li>
+          <ul>
+            <li>WebGLの動作するブラウザさえあれば動作可能。</li>
+            <li>タブレットのフリック操作に対応。</li>
+          </ul>
+        </ul>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <form>
+        <label>TwitterID</label>
+        <input id="screen_name" type="text" placeholder="TwitterID" value="gam0022" />
+        <input type="button" value="generate" onclick="generate()" />
+        <input type="button" value="save" onclick="save()" />
+      </form>
+
+      <canvas id="canvas" width="455" height="275"></canvas>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/bootstrap-transition.js"></script>
+    <script src="assets/js/bootstrap-alert.js"></script>
+    <script src="assets/js/bootstrap-modal.js"></script>
+    <script src="assets/js/bootstrap-dropdown.js"></script>
+    <script src="assets/js/bootstrap-scrollspy.js"></script>
+    <script src="assets/js/bootstrap-tab.js"></script>
+    <script src="assets/js/bootstrap-tooltip.js"></script>
+    <script src="assets/js/bootstrap-popover.js"></script>
+    <script src="assets/js/bootstrap-button.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+    <script src="assets/js/bootstrap-carousel.js"></script>
+    <script src="assets/js/bootstrap-typeahead.js"></script>
+
   </body>
-
 </html>
