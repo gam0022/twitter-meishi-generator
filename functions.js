@@ -3,10 +3,66 @@
 
 var canvas, context;
 
-function draw(background_image_url, json) {
+var MW = 455;
+var MH = 275;
 
+
+// http://ninoha.com/?p=60
+/*
+      文字列を指定幅ごとに区切る
+ 
+      context : 描画コンテキスト
+      text    : 変換元の文字列
+      width   : １行の最大幅
+ 
+      戻り値  : １行毎に分割した文字列の配列
+*/
+function multilineText(context, text, width) {
+    var len = text.length; 
+    var strArray = [];
+    var tmp = "";
+    var i = 0;
+ 
+    if( len < 1 ){
+        //textの文字数が0だったら終わり
+        return strArray;
+    }
+ 
+    for( i = 0; i < len; i++ ){
+        var c = text.charAt(i);  //textから１文字抽出
+        if( c == "\n" ){
+            /* 改行コードの場合はそれまでの文字列を配列にセット */
+            strArray.push( tmp );
+            tmp = "";
+ 
+            continue;
+        }
+ 
+        /* contextの現在のフォントスタイルで描画したときの長さを取得 */
+        if (context.measureText( tmp + c ).width <= width){
+            /* 指定幅を超えるまでは文字列を繋げていく */
+            tmp += c;
+        }else{
+            /* 超えたら、それまでの文字列を配列にセット */
+            strArray.push( tmp );
+            tmp = c;
+        }
+    }
+ 
+    /* 繋げたままの分があれば回収 */
+    if( tmp.length > 0 )
+        strArray.push( tmp );
+ 
+    return strArray;
+}
+
+function draw_design_a(json) {
+
+  var background_image_url = "background_images/design-a.png"
   var screen_name = json.screen_name;
-  var profile_image_url = json.profile_image_local_url
+  var profile_image_url = json.profile_image_local_url;
+  var name = json.name;
+  var description = json.description;
 
   var img = new Image();
   img.src = background_image_url;// + "?" + new Date().getTime();
@@ -17,13 +73,27 @@ function draw(background_image_url, json) {
     profile_image.src = profile_image_url;// + "?" + new Date().getTime();
     profile_image.onload = function() {
       context.drawImage(profile_image, 168, 77, 120, 120);
+
       context.font = "22px 'MS Gothic'";
       context.textAlign = "right";
       context.fillStyle = "rgb(100,100,100)";
       context.fillText("@" + screen_name, 435, 60);
+
+      context.textAlign = "left";
+      context.font = "12px 'MS Gothic'";
+
+      var ary = multilineText(context, name, 150);
+      for (var i = 0; i < ary.length; ++i) {
+        context.fillText(ary[i], (MW-150), 90 + 25*i);
+      }
+
+      var ary = multilineText(context, description, 300);
+      for (var i = 0; i < ary.length; ++i) {
+        context.fillText(ary[i], 10, 220 + 15*i);
+      }
     };
   };
-};
+}
 
 function generate() {
   var screen_name = $("#screen_name").val();
@@ -33,7 +103,7 @@ function generate() {
 
       function(data) {
         var json = $.parseJSON(data);
-        draw("background.png", json);
+        draw_design_a(json);
       });
 }
 
