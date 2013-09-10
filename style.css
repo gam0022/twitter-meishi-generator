@@ -1,16 +1,23 @@
-table img {
+div#selectDesign table a {
+  display: block;
   margin:   0px;
   padding:  0px;
   border: solid 10px white;
 }
 
-img.active {
+div#selectDesign table a.active {
+  display: block;
   margin:   0px;
   padding:  0px;
-  border: solid 10px #bbb;
+  border: solid 10px #b00;
 }
 
 canvas {
   display: block;
   margin-bottom: 20px;
+}
+
+div#selectDesign {
+  width: 480px;
+  background: #ccc;
 }

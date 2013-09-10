@@ -1,5 +1,5 @@
 #! /usr/bin/ruby2.0
-# -*- coding: utf-8 -*-
+# coding: utf-8
 
 require 'twitter'
 require 'cgi'
