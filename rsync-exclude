@@ -4,7 +4,7 @@
 *.log
 *.cer
 *.backup
-*.yaml
+cache.yaml
 
 logs/
 misc/
