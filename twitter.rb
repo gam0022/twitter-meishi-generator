@@ -11,7 +11,7 @@ require 'MeCab'
 require 'kconv'
 
 
-require_relative 'summary'
+require_relative 'summary_2'
 
 def wget(url, filename)
   open(url) do |source|
@@ -66,7 +66,7 @@ begin
     end
   end
 
-  user     = timeline[0]
+  user     = timeline[0].user
 
   hash = user.to_hash
   hash[:profile_image_local_url] = download_progile_image(user)
