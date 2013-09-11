@@ -7,9 +7,6 @@ require 'json'
 require 'yaml'
 require 'open-uri'
 
-require 'MeCab'
-require 'kconv'
-
 require_relative 'functions'
 require_relative 'summary_2'
 
@@ -29,13 +26,6 @@ def download_progile_image(user)
   dst = "profile_images/#{id}#{ext}"
   wget(url, dst)
   return dst
-end
-
-class String
-  def filter
-    # エンコードをUTF-8 にして、改行とURLや#ハッシュダグや@メンションは消す
-    self.gsub(/(\n|https?:\S+|from https?:\S+|#\w+|#|@\S+|^RT)/, "").gsub('&amp;', '&').gsub('&lt;', '<').gsub('&gt;', '>').strip
-  end
 end
 
 begin

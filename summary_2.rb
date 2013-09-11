@@ -1,6 +1,9 @@
 #! /usr/bin/ruby2.0
 # coding: utf-8
 
+require 'MeCab'
+require 'kconv'
+
 class Summary
 
   def initialize()
@@ -31,13 +34,34 @@ class Summary
 
       break if _a.size == 0
       num = rand(_a.size) # 乱数で次の文節を決定する
-      new_text = new_text + _a[num]['end']
+      new_text = new_text.eappend _a[num]['end']
       break if _a[num]['end'] == "EOS"
       t1 = _a[num]['end']
     end
 
     # EOSを削除して、結果出力
     new_text.gsub!(/EOS$/,'').toutf8
+  end
+
+end
+
+
+
+class String
+
+  #
+  # テキストから余分な文字を取り除く
+  #
+  def filter
+    # エンコードをUTF-8 にして、改行とURLや#ハッシュダグや@メンションは消す
+    self.gsub(/(\n|https?:\S+|from https?:\S+|#\w+|#|@\S+|^RT)/, "").gsub('&amp;', '&').gsub('&lt;', '<').gsub('&gt;', '>').strip
+  end
+
+  #
+  # 英単語の場合、スペースをはさんで結合
+  #
+  def eappend(text)
+    (text =~ /^\w+$/ && !self.empty?) ? "#{self} #{text}" : self+text
   end
 
 end
