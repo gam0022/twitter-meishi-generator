@@ -54,6 +54,7 @@ begin
 
   id = cgi.params["id"][0]
 
+  # id が省略されたら、先頭の名刺を表示する。
   if !id
     id = save['ids'][0]
   end
@@ -69,6 +70,5 @@ begin
   print View.new(image_url, id, config['base_url'], save).to_html
 
 rescue => e
-  # エラー処理
   exception_handling(e, 'logs/show.rb.log') 
 end

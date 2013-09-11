@@ -9,21 +9,11 @@ require 'time'
 
 require_relative 'functions'
 
-class View
-
-  def initialize(image_url, id, base_url, save)
-    @image_url = image_url
-    @id = id
-    @base_url = base_url
-    @save = save
-  end
-
-  extend ERB::DefMethod
-  def_erb_method('to_html', 'views/show.erb')
-
-end
-
 begin
+
+  #
+  # load configs
+  #
 
   config = {}
   save = {}
@@ -39,6 +29,11 @@ begin
   else
     save = {'ids' => []}
   end
+
+
+  #
+  # main
+  #
 
   cgi = CGI.new
 
@@ -63,8 +58,10 @@ begin
     f.write save.to_yaml
   end
 
-  print cgi.header("charset"=>"UTF-8")
-  print View.new(image_url, id, config['base_url'], save).to_html
+  print cgi.header( { 
+    "status"     => "REDIRECT",
+    "Location"   => "show.rb?id=#{id}"
+  })
 
 rescue => e
   exception_handling(e, 'logs/save.rb.log') 

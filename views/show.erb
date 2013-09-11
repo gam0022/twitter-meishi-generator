@@ -96,6 +96,10 @@
 
           <div class="well">
 
+            <% screen_name, time = @id.split('-') %>
+
+            <h2>@<%= screen_name %> <small><%= Time.at(time.to_i) %></small></h2>
+
             <a href="<%= @image_url %>"><img src="<%= @image_url %>"></a>
 
             <div style="margin: 10px;">
@@ -110,13 +114,13 @@
 
           <h3>Other Posts</h3>
 
-          <table class="table">
+          <table class="table table-striped">
 
             <thead>
               <tr>
                 <th>#</th>
-                <th>Twitter ID</th>
                 <th>Time</th>
+                <th>Twitter ID</th>
               </tr>
             </thead>
 
@@ -126,8 +130,8 @@
                 <% screen_name, time = id.split('-') %>
                 <tr>
                   <td><%= n + 1 %></td>
-                  <td><%= screen_name %></td>
                   <td><a href="<%= @base_url %>show.rb?id=<%= id %>"><%= Time.at(time.to_i) %></a></td>
+                  <td><a href="https://twitter.com/<%= screen_name %>"><%= screen_name %></a></td>
                 </tr>
               <% end %>
 
