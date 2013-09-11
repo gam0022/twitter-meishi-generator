@@ -31,6 +31,13 @@ def download_progile_image(user)
   return dst
 end
 
+class String
+  def filter
+    # エンコードをUTF-8 にして、改行とURLや#ハッシュダグや@メンションは消す
+    self.gsub(/(\n|https?:\S+|from https?:\S+|#\w+|#|@\S+|^RT)/, "").gsub('&amp;', '&').gsub('&lt;', '<').gsub('&gt;', '>').strip
+  end
+end
+
 begin
 
   config = {}
@@ -62,7 +69,7 @@ begin
 
   timeline.each do |status|
     if status.user_mentions.empty?
-      summary.learn(status.text)   
+      summary.learn(status.text.filter)
     end
   end
 
