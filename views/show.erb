@@ -119,6 +119,7 @@
                 <th>#</th>
                 <th>Time</th>
                 <th>Twitter ID</th>
+                <th>Delete</th>
               </tr>
             </thead>
 
@@ -130,6 +131,8 @@
                   <td><%= n + 1 %></td>
                   <td><a href="<%= @base_url %>show.rb?id=<%= id %>"><%= Time.at(time.to_i) %></a></td>
                   <td><a href="https://twitter.com/<%= screen_name %>"><%= screen_name %></a></td>
+
+                  <td><a onclick="delete_image('<%= id %>')">x</td>
                 </tr>
               <% end %>
 

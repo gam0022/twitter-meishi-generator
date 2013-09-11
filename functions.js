@@ -136,6 +136,10 @@ function save_image() {
   window.open( canvas.toDataURL(type) );
 }
 
+function delete_image(id) {
+  document.location.href = "delete.rb?id=" + id;
+}
+
 function select_design(name) {
   $('a#design_a_' + selected_design_name).first().removeClass('active');
   selected_design_name = name;

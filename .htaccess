@@ -1,3 +1,10 @@
 <Files ~ "(functions.rb|preview.rb|deploy|\.log$|\.erb$|\.yaml$)">
 deny from all 
 </Files>
+
+<Files ~ "(delete.rb)">
+AuthType Basic
+AuthName "admin"
+AuthUserFile /etc/httpd/.htpasswd
+Require user gam0022
+</Files>
