@@ -11,10 +11,11 @@ require_relative 'functions'
 
 class View
 
-  def initialize(image_url, id, base_url)
+  def initialize(image_url, id, base_url, save)
     @image_url = image_url
     @id = id
     @base_url = base_url
+    @save = save
   end
 
   extend ERB::DefMethod
@@ -25,9 +26,18 @@ end
 begin
 
   config = {}
+  save = {}
 
   open("config.yaml") do |f|
     config = YAML.load(f)
+  end
+
+  if File.exist?("save.yaml")
+    open("save.yaml") do |f|
+      save = YAML.load(f)
+    end
+  else
+    save = {'ids' => []}
   end
 
   cgi = CGI.new
@@ -38,7 +48,8 @@ begin
     raise StandardError
   end
 
-  id = "#{screen_name}_#{Time.now.to_i}".delete("\n\r")
+  id = "#{screen_name}-#{Time.now.to_i}".delete("\n\r")
+  save['ids'].push id
 
   image_url = "saved_images/#{id}.png"
 
@@ -48,11 +59,13 @@ begin
 
   File.binwrite(image_url, image_data)
 
-  # ビュー
+  open("save.yaml", "w") do |f|
+    f.write save.to_yaml
+  end
+
   print cgi.header("charset"=>"UTF-8")
-  print View.new(image_url, id, config['base_url']).to_html
+  print View.new(image_url, id, config['base_url'], save).to_html
 
 rescue => e
-  # エラー処理
   exception_handling(e, 'logs/save.rb.log') 
 end

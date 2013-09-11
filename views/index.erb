@@ -69,7 +69,7 @@
 
         <legend>What's this?</legend>
 
-        <p>Twitter ID から簡単に名刺を作成する Web サービスです。</p>
+        <p>TwitterID から簡単に名刺を作成する Web サービスです。</p>
 
         <legend>Selling Point</legend>
 
@@ -80,6 +80,7 @@
           <li>Canvas を用いた描画により、デザイン選択から一瞬で名刺が生成可能。</li>
           <li>完成した名刺は PNG 形式で保存可能。</li>
           <li>マルコフ連鎖で直近100件のツイートをカオスに要約。</li>
+          <li>作成した名刺はTwitterで共有。</li>
         </ul>
 
       </div>
@@ -138,10 +139,8 @@
 
             <canvas id="canvas" width="455" height="275"></canvas>
 
-            <!--button type="button" class="btn btn-primary" onclick="save()">Save as PNG</button-->
-
             <form class="form-inline" method="POST" action="save.rb" onsubmit="return save_as_png();">
-              <button type="submit" class="btn btn-primary"">Save as PNG</button>
+              <button type="submit" class="btn btn-primary">Save as PNG</button>
               <input type="hidden" name="image_data" id="image_data" value="empty">
               <input type="hidden" name="screen_name_hidden" id="screen_name_hidden" value="empty">
             </form>

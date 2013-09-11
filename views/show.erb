@@ -80,6 +80,7 @@
           <li>Canvas を用いた描画により、デザイン選択から一瞬で名刺が生成可能。</li>
           <li>完成した名刺は PNG 形式で保存可能。</li>
           <li>マルコフ連鎖で直近100件のツイートをカオスに要約。</li>
+          <li>作成した名刺はTwitterで共有。</li>
         </ul>
 
       </div>
@@ -89,18 +90,53 @@
     </div>
 
     <div class="container">
+      <div class="row">
 
-      <div class="well">
+        <div class="span6">
 
-        <a href="<%= @image_url %>"><img src="<%= @image_url %>"></a>
+          <div class="well">
 
-        <div style="margin: 10px;">
+            <a href="<%= @image_url %>"><img src="<%= @image_url %>"></a>
 
-          <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= @base_url %>" data-text="名刺を作ったよ! <%= @base_url %>show.rb?id=<%= @id %>" data-lang="ja" data-size="large" data-hashtags="meishi_gen">ツイート</a>
-          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            <div style="margin: 10px;">
+
+              <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= @base_url %>" data-text="名刺を作ったよ! <%= @base_url %>show.rb?id=<%= @id %>" data-lang="ja" data-size="large" data-hashtags="meishi_gen">ツイート</a>
+              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            </div>
+          </div>
         </div>
-      </div>
 
+        <div class="span6">
+
+          <h3>Other Posts</h3>
+
+          <table class="table">
+
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Twitter ID</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <% @save['ids'].each_with_index do |id, n| %>
+                <% screen_name, time = id.split('-') %>
+                <tr>
+                  <td><%= n + 1 %></td>
+                  <td><%= screen_name %></td>
+                  <td><a href="<%= @base_url %>show.rb?id=<%= id %>"><%= Time.at(time.to_i) %></a></td>
+                </tr>
+              <% end %>
+
+            </tbody>
+
+          </table>
+        </div>
+
+      </div>
     </div> <!-- /container -->
 
     <!-- Le javascript

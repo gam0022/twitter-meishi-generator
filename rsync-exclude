@@ -4,9 +4,9 @@
 *.log
 *.cer
 *.backup
-cache.yaml
 
 logs/
 misc/
 profile_images/*
 saved_images/*
+save.yaml
