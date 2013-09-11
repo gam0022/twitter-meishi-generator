@@ -26,8 +26,8 @@ draw_functions['design_a'] = function (json) {
       context.textAlign = "left";
       context.font = "12px 'MS Gothic'";
 
-      fillMultilineText(context, name, 150, MW - 150, 90, 15);
-      fillMultilineText(context, description, 300, 10, 220, 15);
+      fillMultilineText(context, name, 150, MW - 150, 90, 15, 5);
+      fillMultilineTextBottom(context, description, 300, 10, 220, 15, 4);
     };
   };
 };
@@ -58,8 +58,8 @@ draw_functions['simple_a'] = function (json) {
 
       context.font = "12px 'MS Gothic'";
 
-      fillMultilineText(context, name, MW - 145 - 20, 145 + 5, 90, 15);
-      fillMultilineText(context, description, 300, 145, 200, 15);
+      fillMultilineText(context, name, MW - 145 - 20, 145 + 5, 90, 15, 5);
+      fillMultilineTextBottom(context, description, 300, 145, 170, 15, 7);
     };
   };
 };
@@ -90,8 +90,8 @@ draw_functions['simple_b'] = function (json) {
 
       context.font = "12px 'MS Gothic'";
 
-      fillMultilineText(context, name, MW - 200 - 20, 200 + 5, 90, 15);
-      fillMultilineText(context, description, MW - 60 - 30, 75, 220, 15);
+      fillMultilineText(context, name, MW - 200 - 20, 200 + 5, 90, 15, 5);
+      fillMultilineTextBottom(context, description, MW - 60 - 30, 75, 200, 15, 5);
     };
   };
 };
@@ -122,8 +122,8 @@ draw_functions['simple_c'] = function (json) {
 
       context.font = "12px 'MS Gothic'";
 
-      fillMultilineText(context, name, MW - 150 - 20, 150 + 5, 90, 15);
-      fillMultilineText(context, description, MW - 30 * 2, 30, 220, 15);
+      fillMultilineText(context, name, MW - 150 - 20, 150 + 5, 90, 15, 5);
+      fillMultilineTextBottom(context, description, MW - 30 * 2, 30, 200, 15, 5);
     };
   };
 };
@@ -155,12 +155,12 @@ draw_functions['simple_a_summary'] = function (json) {
 
       context.font = "12px 'MS Gothic'";
 
-      fillMultilineText(context, name, MW - 145 - 20, 145 + 5, 90, 15);
+      fillMultilineText(context, name, MW - 145 - 20, 145 + 5, 90, 15, 3);
 
       context.fillText("summary:", 145, 120);
-      fillMultilineText(context, summary, 300, 145, 140, 15);
+      fillMultilineText(context, summary, 300, 145, 140, 15, 3);
 
-      fillMultilineText(context, description, 300, 145, 210, 15);
+      fillMultilineTextBottom(context, description, 300, 145, 200, 15, 5);
     };
   };
 };
@@ -192,12 +192,12 @@ draw_functions['simple_b_summary'] = function (json) {
 
       context.font = "12px 'MS Gothic'";
 
-      fillMultilineText(context, name, MW - 200 - 20, 200 + 5, 90, 15);
+      fillMultilineText(context, name, MW - 200 - 20, 200 + 5, 90, 15, 3);
 
       context.fillText("summary:", 75, 160);
-      fillMultilineText(context, summary, MW - 60 - 30, 75, 180, 15);
+      fillMultilineText(context, summary, MW - 60 - 30, 75, 180, 15, 2);
 
-      fillMultilineText(context, description, MW - 60 - 30, 75, 230, 15);
+      fillMultilineTextBottom(context, description, MW - 60 - 30, 75, 230, 15, 3);
     };
   };
 };

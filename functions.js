@@ -59,10 +59,26 @@ function multilineText(context, text, width) {
     return strArray;
 }
 
-function fillMultilineText(context, text, width, x, y, line_height) {
+function fillMultilineText(context, text, width, x, y, line_height, max_line) {
   var ary = multilineText(context, text, width);
-  for (var i = 0; i < ary.length; ++i) {
-    context.fillText(ary[i], x, y + line_height*i);
+  var n = ary.length;
+  if (n > max_line) {
+    n = max_line;
+  }
+  for (var i = 0; i < n; ++i) {
+    context.fillText(ary[i], x, y + line_height * i);
+  }
+}
+
+function fillMultilineTextBottom(context, text, width, x, y, line_height, max_line) {
+  var ary = multilineText(context, text, width);
+  var n = ary.length;
+  if (n > max_line) {
+    n = max_line;
+  }
+  var pad = max_line - n;
+  for (var i = 0; i < n; ++i) {
+    context.fillText(ary[i], x, y + line_height * (i + pad) );
   }
 }
 
