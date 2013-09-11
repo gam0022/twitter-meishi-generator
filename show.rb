@@ -9,9 +9,10 @@ require_relative 'functions'
 
 class View
 
-  def initialize(image_url, id)
+  def initialize(image_url, id, base_url)
     @image_url = image_url
     @id = id
+    @base_url = base_url
   end
 
   extend ERB::DefMethod
@@ -20,6 +21,13 @@ class View
 end
 
 begin
+
+  config = {}
+
+  open("config.yaml") do |f|
+    config = YAML.load(f)
+  end
+
   cgi = CGI.new
 
   print cgi.header("charset"=>"UTF-8")
@@ -32,7 +40,7 @@ begin
 
   image_url = "saved_images/#{id}.png"
 
-  print View.new(image_url, id).to_html
+  print View.new(image_url, id, config['base_url']).to_html
 
 rescue => e
   # エラー処理
