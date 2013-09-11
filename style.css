@@ -5,6 +5,13 @@ div#selectDesign table a {
   border: solid 10px white;
 }
 
+div#selectDesign table a:hover {
+  display: block;
+  margin:   0px;
+  padding:  0px;
+  border: solid 10px #aaa;
+}
+
 div#selectDesign table a.active {
   display: block;
   margin:   0px;
