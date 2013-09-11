@@ -100,6 +100,16 @@ function select_design(name) {
   }
 }
 
+function submitCheck(e) {
+  if (!e) var e = window.event;
+
+  // Enter キー で Twitter ID を確定する。
+  if(e.keyCode == 13){
+    generate();
+    return false;
+  }
+}
+
 $(function() {
   canvas  = document.getElementById("canvas");
   context = canvas.getContext("2d");
