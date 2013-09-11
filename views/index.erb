@@ -137,10 +137,10 @@
 
             <canvas id="canvas" width="455" height="275"></canvas>
 
-            <button type="button" class="btn btn-primary" onclick="save()">Save as PNG</button>
+            <!--button type="button" class="btn btn-primary" onclick="save()">Save as PNG</button-->
 
             <form class="form-inline" method="POST" action="save.rb" onsubmit="return save_as_png();">
-              <button type="submit" class="btn">Save as PNG 2</button>
+              <button type="submit" class="btn btn-primary"">Save as PNG</button>
               <input type="hidden" name="image_data" id="image_data" value="empty">
               <input type="hidden" name="screen_name_hidden" id="screen_name_hidden" value="empty">
             </form>

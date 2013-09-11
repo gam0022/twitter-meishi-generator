@@ -68,6 +68,10 @@ function fillMultilineText(context, text, width, x, y, line_height) {
 
 function generate() {
   var screen_name = $("#screen_name").val();
+  if (screen_name == "") {
+    return;
+  }
+
   $.post(
       "twitter.rb",
       {"screen_name": screen_name},
