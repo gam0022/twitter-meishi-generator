@@ -48,7 +48,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">TMG <small>Twitter Meishi Generator</small></a>
+          <a class="brand" href="./">TMG <small>Twitter Meishi Generator</small></a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li><a href="#about" data-toggle="modal"><i class="icon-question-sign icon-white"></i>About</a></li>
@@ -89,66 +89,13 @@
 
     <div class="container">
 
-      <div class="row">
+      <a href="<%= @image_url %>"><img src="<%= @image_url %>"></a>
 
-        <div class="span6">
+      <p>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://localhost:3000/" data-text="名刺を作ったよ！ http://localhost:3000/show.rb?id=<%= @id%>" data-lang="ja" data-size="large">ツイート</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      </p>
 
-          <h4><a class="btn btn-info">1</a> TwitterID</h4>
-
-          <form class="form-inline">
-            <input id="screen_name" type="text" placeholder="Twitter ID" value="gam0022" onKeyPress="return submitCheck(event);">
-            <button type="button" class="btn" onclick="generate()">Apply</button>
-          </form>
-
-          <h4><a class="btn btn-info">2</a> Design</h4>
-
-          <div id="selectDesign" class="carousel slide">
-            <ol class="carousel-indicators">
-              <% @designs.each_with_index do |item, i| %>
-                <li data-target="#selectDesign" data-slide-to="<%= i %>"></li>
-              <% end %>
-            </ol>
-            <!-- Carousel items -->
-            <div class="carousel-inner">
-              <% @designs.each do |item| %>
-                <div class="item">
-                  <table align="center">
-                    <tr>
-                      <td><a onclick="select_design('<%= item[0] %>');" id="design_a_<%= item[0] %>"><img src="thumbnail_images/<%= item[0] %>.png" width="150px"></a></td>
-                      <td><a onclick="select_design('<%= item[1] %>');" id="design_a_<%= item[1] %>"><img src="thumbnail_images/<%= item[1] %>.png" width="150px"></a></td>
-                    </tr>
-                    <tr>
-                      <td><a onclick="select_design('<%= item[2] %>');" id="design_a_<%= item[2] %>"><img src="thumbnail_images/<%= item[2] %>.png" width="150px"></a></td>
-                      <td><a onclick="select_design('<%= item[3] %>');" id="design_a_<%= item[3] %>"><img src="thumbnail_images/<%= item[3] %>.png" width="150px"></a></td>
-                    </tr>
-                  </table>
-                </div>
-              <% end %>
-            </div>
-            <!-- Carousel nav -->
-            <a class="carousel-control left" href="#selectDesign" data-slide="prev">&lsaquo;</a>
-            <a class="carousel-control right" href="#selectDesign" data-slide="next">&rsaquo;</a>
-          </div>
-        </div>
-
-        <div class="span6">
-          <div class="well">
-            <h4><a class="btn btn-success">3</a> Preview</h4>
-
-            <canvas id="canvas" width="455" height="275"></canvas>
-
-            <button type="button" class="btn btn-primary" onclick="save()">Save as PNG</button>
-
-            <form class="form-inline" method="POST" action="save.rb" onsubmit="return save_as_png();">
-              <button type="submit" class="btn">Save as PNG 2</button>
-              <input type="hidden" name="image_data" id="image_data" value="empty">
-              <input type="hidden" name="screen_name_hidden" id="screen_name_hidden" value="empty">
-            </form>
-
-          </div>
-        </div>
-
-      </div>
     </div> <!-- /container -->
 
     <!-- Le javascript

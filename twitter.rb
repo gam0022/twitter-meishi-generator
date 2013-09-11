@@ -49,9 +49,9 @@ begin
   cgi = CGI.new
   print cgi.header("charset"=>"UTF-8")
 
-  screen_name = cgi.params["screen_name"][0]
+  screen_name = cgi.params["screen_name"][0].delete("\n\r")
 
-  if screen_name =~ /[\n\r]/ || !(screen_name =~ /^[a-zA-Z0-9_]+$/)
+  if !(screen_name =~ /^[a-zA-Z0-9_]+$/)
     raise StandardError
   end
 

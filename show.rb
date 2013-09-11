@@ -4,8 +4,6 @@
 require 'cgi'
 require 'erb'
 require 'yaml'
-require 'base64'
-require 'time'
 
 require_relative 'functions'
 
@@ -24,27 +22,19 @@ end
 begin
   cgi = CGI.new
 
-  screen_name = cgi.params["screen_name_hidden"][0].delete("\n\r")
+  print cgi.header("charset"=>"UTF-8")
 
-  if !(screen_name =~ /^[a-zA-Z0-9_]+$/)
+  id = cgi.params["id"][0].delete("\n\r")
+
+  if !(id =~ /^[a-zA-Z0-9_]+_\d+$/)
     raise StandardError
   end
 
-  id = "#{screen_name}_#{Time.now.to_i}".delete("\n\r")
-
   image_url = "saved_images/#{id}.png"
 
-  image_data = Base64.decode64(
-    cgi.params["image_data"][0].gsub('data:image/png;base64,','')
-  )
-
-  File.binwrite(image_url, image_data)
-
-  # ビュー
-  print cgi.header("charset"=>"UTF-8")
   print View.new(image_url, id).to_html
 
 rescue => e
   # エラー処理
-  exception_handling(e, 'logs/save.rb.log') 
+  exception_handling(e, 'logs/show.rb.log') 
 end

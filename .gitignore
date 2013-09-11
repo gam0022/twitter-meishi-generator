@@ -6,4 +6,5 @@
 *.backup
 
 config.yaml
-profile_images/*.*
+profile_images/*
+saved_images/*

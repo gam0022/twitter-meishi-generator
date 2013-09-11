@@ -83,6 +83,13 @@ function save() {
   location.href = canvas.toDataURL(type);
 }
 
+function save_as_png() {
+  var type = 'image/png';
+  $('#image_data').val( canvas.toDataURL(type) );
+  $('#screen_name_hidden').val( $("#screen_name").val() );
+  return true;
+}
+
 function init_design_select() {
   $("ol.carousel-indicators li").first().addClass('active');
   $("div.carousel-inner div.item").first().addClass('active');

@@ -5,6 +5,8 @@ require 'cgi'
 require 'erb'
 require 'yaml'
 
+require_relative 'functions'
+
 class View
 
   def initialize(designs)
