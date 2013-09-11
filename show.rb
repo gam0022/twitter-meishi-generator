@@ -54,9 +54,9 @@ begin
 
   id = cgi.params["id"][0]
 
-  # id が省略されたら、先頭の名刺を表示する。
+  # id が省略されたら、最後の名刺を表示する。
   if !id
-    id = save['ids'][0]
+    id = save['ids'][-1]
   end
   
   id = id.delete("\n\r")

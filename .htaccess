@@ -2,7 +2,7 @@
 deny from all 
 </Files>
 
-<Files ~ "(delete.rb)">
+<Files ~ "(delete.rb|test.rb)">
 AuthType Basic
 AuthName "admin"
 AuthUserFile /etc/httpd/.htpasswd

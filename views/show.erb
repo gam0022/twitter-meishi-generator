@@ -125,7 +125,7 @@
 
             <tbody>
 
-              <% @save['ids'].each_with_index do |id, n| %>
+              <% @save['ids'].reverse.each_with_index do |id, n| %>
                 <% screen_name, time = id.split('-') %>
                 <tr>
                   <td><%= n + 1 %></td>
