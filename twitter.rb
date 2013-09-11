@@ -7,6 +7,12 @@ require 'json'
 require 'yaml'
 require 'open-uri'
 
+require 'MeCab'
+require 'kconv'
+
+
+require_relative 'summary'
+
 def wget(url, filename)
   open(url) do |source|
     open(filename, "w+b") do |f|
@@ -49,9 +55,22 @@ begin
     raise StandardError
   end
 
-  user = client.user(screen_name)
+  #user = client.user(screen_name)
+  timeline = client.user_timeline(screen_name, {:count => 100})
+
+  summary = Summary.new()
+
+  timeline.each do |status|
+    if status.user_mentions.empty?
+      summary.learn(status.text)   
+    end
+  end
+
+  user     = timeline[0]
+
   hash = user.to_hash
   hash[:profile_image_local_url] = download_progile_image(user)
+  hash[:summary] = summary.talk()
   
   puts hash.to_json
 
