@@ -14,7 +14,7 @@ draw_functions['design_a'] = function (json) {
     context.drawImage(img, 0, 0, 455, 275);
 
     var profile_image = new Image();
-    profile_image.src = profile_image_url;// + "?" + new Date().getTime();
+    profile_image.src = profile_image_url;
     profile_image.onload = function() {
       context.drawImage(profile_image, 168, 77, 120, 120);
 
@@ -26,15 +26,8 @@ draw_functions['design_a'] = function (json) {
       context.textAlign = "left";
       context.font = "12px 'MS Gothic'";
 
-      var ary = multilineText(context, name, 150);
-      for (var i = 0; i < ary.length; ++i) {
-        context.fillText(ary[i], (MW-150), 90 + 15*i);
-      }
-
-      var ary = multilineText(context, description, 300);
-      for (var i = 0; i < ary.length; ++i) {
-        context.fillText(ary[i], 10, 220 + 15*i);
-      }
+      fillMultilineText(context, name, 150, MW - 150, 90, 15);
+      fillMultilineText(context, description, 300, 10, 220, 15);
     };
   };
 };
@@ -48,12 +41,12 @@ draw_functions['simple_a'] = function (json) {
   var description = json.description;
 
   var img = new Image();
-  img.src = background_image_url;// + "?" + new Date().getTime();
+  img.src = background_image_url;
   img.onload = function() {
     context.drawImage(img, 0, 0, 455, 275);
 
     var profile_image = new Image();
-    profile_image.src = profile_image_url;// + "?" + new Date().getTime();
+    profile_image.src = profile_image_url;
     profile_image.onload = function() {
       context.drawImage(profile_image, 15, 30, 100, 100);
 
@@ -65,15 +58,8 @@ draw_functions['simple_a'] = function (json) {
 
       context.font = "12px 'MS Gothic'";
 
-      var ary = multilineText(context, name, 150);
-      for (var i = 0; i < ary.length; ++i) {
-        context.fillText(ary[i], 145, 90 + 15*i);
-      }
-
-      var ary = multilineText(context, description, 300);
-      for (var i = 0; i < ary.length; ++i) {
-        context.fillText(ary[i], 145, 220 + 15*i);
-      }
+      fillMultilineText(context, name, MW - 145 - 20, 145, 90, 15);
+      fillMultilineText(context, description, 300, 145, 200, 15);
     };
   };
 };
@@ -87,12 +73,12 @@ draw_functions['simple_b'] = function (json) {
   var description = json.description;
 
   var img = new Image();
-  img.src = background_image_url;// + "?" + new Date().getTime();
+  img.src = background_image_url;
   img.onload = function() {
     context.drawImage(img, 0, 0, 455, 275);
 
     var profile_image = new Image();
-    profile_image.src = profile_image_url;// + "?" + new Date().getTime();
+    profile_image.src = profile_image_url;
     profile_image.onload = function() {
       context.drawImage(profile_image, 75, 30, 100, 100);
 
@@ -104,15 +90,8 @@ draw_functions['simple_b'] = function (json) {
 
       context.font = "12px 'MS Gothic'";
 
-      var ary = multilineText(context, name, 150);
-      for (var i = 0; i < ary.length; ++i) {
-        context.fillText(ary[i], 200, 90 + 15*i);
-      }
-
-      var ary = multilineText(context, description, MW - 60 - 30);
-      for (var i = 0; i < ary.length; ++i) {
-        context.fillText(ary[i], 75, 220 + 15*i);
-      }
+      fillMultilineText(context, name, MW - 200 - 20, 200, 90, 15);
+      fillMultilineText(context, description, MW - 60 - 30, 75, 220, 15);
     };
   };
 };

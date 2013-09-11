@@ -59,6 +59,13 @@ function multilineText(context, text, width) {
     return strArray;
 }
 
+function fillMultilineText(context, text, width, x, y, line_height) {
+  var ary = multilineText(context, text, width);
+  for (var i = 0; i < ary.length; ++i) {
+    context.fillText(ary[i], x, y + line_height*i);
+  }
+}
+
 function generate() {
   var screen_name = $("#screen_name").val();
   $.post(
@@ -79,7 +86,6 @@ function save() {
 function init_design_select() {
   $("ol.carousel-indicators li").first().addClass('active');
   $("div.carousel-inner div.item").first().addClass('active');
-  //$("div.carousel-inner div.item img").first().addClass('active');
   select_design(selected_design_name = 'design_a');
 }
 
