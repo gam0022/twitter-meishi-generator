@@ -10,6 +10,8 @@ var selected_design_name;
 
 var json_cached;
 
+var isDrawing = false;
+
 // http://ninoha.com/?p=60
 /*
       文字列を指定幅ごとに区切る
@@ -82,6 +84,16 @@ function fillMultilineTextBottom(context, text, width, x, y, line_height, max_li
   }
 }
 
+function excute_draw(json) {
+  if (isDrawing) {
+    return;
+  }
+
+  isDrawing = true;
+  draw_functions[selected_design_name].call(this, json);
+  isDrawing = false;
+}
+
 function generate() {
   var screen_name = $("#screen_name").val();
   if (screen_name == "") {
@@ -94,13 +106,14 @@ function generate() {
 
       function(data) {
         var json = json_cached = $.parseJSON(data);
-        draw_functions[selected_design_name].call(this, json);
+        excute_draw(json);
       });
 }
 
-function save() {
-  var type = 'image/png';
-  location.href = canvas.toDataURL(type);
+function init_design_select() {
+  $("ol.carousel-indicators li").first().addClass('active');
+  $("div.carousel-inner div.item").first().addClass('active');
+  select_design(selected_design_name = 'design_a');
 }
 
 function save_as_png() {
@@ -110,18 +123,12 @@ function save_as_png() {
   return true;
 }
 
-function init_design_select() {
-  $("ol.carousel-indicators li").first().addClass('active');
-  $("div.carousel-inner div.item").first().addClass('active');
-  select_design(selected_design_name = 'design_a');
-}
-
 function select_design(name) {
   $('a#design_a_' + selected_design_name).first().removeClass('active');
   selected_design_name = name;
   $('a#design_a_' + selected_design_name).first().addClass('active');
   if (json_cached != null) {
-    draw_functions[selected_design_name].call(this, json_cached);
+    excute_draw(json_cached);
   } else {
     generate();
   }
