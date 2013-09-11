@@ -97,7 +97,7 @@
 
           <form class="form-inline">
             <input id="screen_name" type="text" placeholder="Twitter ID" value="gam0022" onKeyPress="return submitCheck(event);">
-            <button type="button" class="btn" onclick="generate()">Apply</button>
+            <button type="button" class="btn" onclick="apply_screen_name()">Apply</button>
           </form>
 
           <h4><a class="btn btn-info">2</a> Design</h4>
@@ -135,10 +135,12 @@
           <div class="well">
             <h4><a class="btn btn-success">3</a> Preview</h4>
 
-            <canvas id="canvas" width="455" height="275"></canvas>
+            <a onclick="save_image()">
+              <canvas id="canvas" width="455" height="275"></canvas>
+            </a>
 
-            <form class="form-inline" method="POST" action="save.rb" onsubmit="return save_as_png();">
-              <button type="submit" class="btn btn-primary">Save as PNG</button>
+            <form class="form-inline" method="POST" action="save.rb" onsubmit="return post_image();">
+              <button type="submit" class="btn btn-primary">Post</button>
               <input type="hidden" name="image_data" id="image_data" value="empty">
               <input type="hidden" name="screen_name_hidden" id="screen_name_hidden" value="empty">
             </form>

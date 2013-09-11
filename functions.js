@@ -94,7 +94,7 @@ function excute_draw(json) {
   isDrawing = false;
 }
 
-function generate() {
+function apply_screen_name() {
   var screen_name = $("#screen_name").val();
   if (screen_name == "") {
     return;
@@ -116,11 +116,24 @@ function init_design_select() {
   select_design(selected_design_name = 'design_a');
 }
 
-function save_as_png() {
+function post_image() {
+  if (isDrawing) {
+    return false;
+  }
+
   var type = 'image/png';
   $('#image_data').val( canvas.toDataURL(type) );
   $('#screen_name_hidden').val( $("#screen_name").val() );
   return true;
+}
+
+function save_image() {
+  if (isDrawing) {
+    return false;
+  }
+
+  var type = 'image/png';
+  window.open( canvas.toDataURL(type) );
 }
 
 function select_design(name) {
@@ -130,7 +143,7 @@ function select_design(name) {
   if (json_cached != null) {
     excute_draw(json_cached);
   } else {
-    generate();
+    apply_screen_name();
   }
 }
 
@@ -139,7 +152,7 @@ function submitCheck(e) {
 
   // Enter キー で Twitter ID を確定する。
   if(e.keyCode == 13){
-    generate();
+    apply_screen_name();
     return false;
   }
 }
@@ -148,5 +161,5 @@ $(function() {
   canvas  = document.getElementById("canvas");
   context = canvas.getContext("2d");
   init_design_select();
-  generate();
+  apply_screen_name();
 });
