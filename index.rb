@@ -32,13 +32,5 @@ begin
   print View.new(designs).to_html
 
 rescue => e
-  puts "internal error ><;"
-
-  time = Time.now.strftime("[%y.%m.%d-%H:%M:%S]")
-  open('logs/index.rb.log', "a") do |f|
-    f.puts time
-    f.puts e.to_s
-    f.puts e.backtrace.join("\n")
-    f.puts 
-  end
+  exception_handling(e, 'logs/index.rb.log')
 end

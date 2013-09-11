@@ -10,7 +10,7 @@ require 'open-uri'
 require 'MeCab'
 require 'kconv'
 
-
+require_relative 'functions'
 require_relative 'summary_2'
 
 def wget(url, filename)
@@ -75,13 +75,5 @@ begin
   puts hash.to_json
 
 rescue => e
-  puts "internal error ><;"
-
-  time = Time.now.strftime("[%y.%m.%d-%H:%M:%S]")
-  open('logs/twitter.rb.log', "a") do |f|
-    f.puts time
-    f.puts e.to_s
-    f.puts e.backtrace.join("\n")
-    f.puts 
-  end
+  exception_handling(e, 'logs/twitter.rb.log')
 end

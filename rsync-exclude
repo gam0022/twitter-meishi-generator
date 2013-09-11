@@ -8,4 +8,5 @@ cache.yaml
 
 logs/
 misc/
-profile_images/
+profile_images/*
+saved_images/*
