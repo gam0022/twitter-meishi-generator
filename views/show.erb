@@ -90,12 +90,15 @@
 
     <div class="container">
 
-      <a href="<%= @image_url %>"><img src="<%= @image_url %>"></a>
+      <div class="well">
 
-      <div style="margin: 10px;">
+        <a href="<%= @image_url %>"><img src="<%= @image_url %>"></a>
 
-        <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= @base_url %>show.rb?id=<%= @id %>" data-text="名刺を作ったよ！" data-via="meishi_gen" data-lang="ja" data-size="large">ツイート</a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        <div style="margin: 10px;">
+
+          <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%= @base_url %>" data-text="名刺を作ったよ! <%= @base_url %>show.rb?id=<%= @id %>" data-lang="ja" data-size="large" data-hashtags="meishi_gen">ツイート</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        </div>
       </div>
 
     </div> <!-- /container -->
