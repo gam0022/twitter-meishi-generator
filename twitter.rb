@@ -53,17 +53,15 @@ begin
   end
 
   #user = client.user(screen_name)
-  timeline = client.user_timeline(screen_name, {:count => 100})
+  timeline = client.user_timeline(screen_name, {:count => 200})
 
   summary = Summary.new()
 
   timeline.each do |status|
-    if status.user_mentions.empty?
-      summary.learn(status.text.filter)
-    end
+    summary.learn(status.text.filter)
   end
 
-  user     = timeline[0].user
+  user = timeline[0].user
 
   hash = user.to_hash
   hash[:profile_image_local_url] = download_progile_image(user)
