@@ -12,6 +12,8 @@ var json_cached;
 
 var isDrawing = false;
 
+var isAndroid = false;
+
 // http://ninoha.com/?p=60
 /*
       文字列を指定幅ごとに区切る
@@ -134,7 +136,7 @@ function post_image() {
 }
 
 function save_image() {
-  if (isDrawing) {
+  if (isDrawing || isAndroid) {
     return false;
   }
 
@@ -172,4 +174,9 @@ $(function() {
   context = canvas.getContext("2d");
   init_design_select();
   apply_screen_name();
+
+  var agent = navigator.userAgent;
+  if(agent.search(/Android/) != -1){
+    isAndroid = true;
+  }
 });
