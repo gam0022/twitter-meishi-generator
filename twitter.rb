@@ -8,7 +8,7 @@ require 'yaml'
 require 'open-uri'
 
 require_relative 'functions'
-require_relative 'summary_2'
+require_relative 'summary'
 
 def wget(url, filename)
   open(url) do |source|
