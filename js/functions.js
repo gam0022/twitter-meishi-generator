@@ -105,7 +105,13 @@ function apply_screen_name() {
       {"screen_name": screen_name},
 
       function(data) {
+        if (data == "(´・ω・｀)") {
+          $("#alert_screen_name").css('display', 'block');
+          return;
+        }
+
         var json = json_cached = $.parseJSON(data);
+        $("#alert_screen_name").css('display', 'none');
         excute_draw(json);
       });
 }

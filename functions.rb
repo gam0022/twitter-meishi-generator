@@ -1,5 +1,5 @@
 def exception_handling(e, filename)
-  puts "(´・ω・｀)"
+  print "(´・ω・｀)"
 
   time = Time.now.strftime("[%y.%m.%d-%H:%M:%S]")
   open(filename, "a") do |f|
