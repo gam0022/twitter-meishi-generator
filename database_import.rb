@@ -1,7 +1,6 @@
-require 'sqlite3'
-require 'active_record'
-require 'pp'
- 
+#! /usr/bin/ruby2.0
+# coding: utf-8
+
 require_relative 'database'
 
 #id = "5723058-gam0022"
