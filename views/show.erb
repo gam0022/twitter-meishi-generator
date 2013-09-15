@@ -99,11 +99,10 @@
 
           <div class="well">
 
-            <% screen_name, time = @id.split('-') %>
+            <h2>@<%= @post.screen_name %> <small><%= @post.time %></small></h2>
 
-            <h2>@<%= screen_name %> <small><%= Time.at(time.to_i) %></small></h2>
-
-            <a href="<%= @image_url %>"><img src="<%= @image_url %>"></a>
+            <% image_url = "saved_images/#{@post.pid}.png" %>
+            <a href="<%= image_url %>"><img src="<%= image_url %>"></a>
 
             <div style="margin: 10px;">
 
@@ -130,14 +129,13 @@
 
             <tbody>
 
-              <% @save['ids'].reverse.each_with_index do |id, n| %>
-                <% screen_name, time = id.split('-') %>
+              <% @posts.reverse.each_with_index do |post| %>
                 <tr>
-                  <td><%= n + 1 %></td>
-                  <td><a href="<%= @base_url %>show.rb?id=<%= id %>"><%= Time.at(time.to_i) %></a></td>
-                  <td><a href="https://twitter.com/<%= screen_name %>"><%= screen_name %></a></td>
+                  <td><%= post.id %></td>
+                  <td><a href="<%= @base_url %>show.rb?id=<%= post.pid %>"><%= post.time %></a></td>
+                  <td><a href="https://twitter.com/<%= post.screen_name %>"><%= post.screen_name %></a></td>
 
-                  <td><a onclick="delete_image('<%= id %>')">x</td>
+                  <td><a onclick="delete_image('<%= post.pid %>')">x</td>
                 </tr>
               <% end %>
 

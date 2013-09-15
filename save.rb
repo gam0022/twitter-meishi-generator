@@ -8,6 +8,7 @@ require 'base64'
 require 'time'
 
 require_relative 'functions'
+require_relative 'database'
 
 begin
 
@@ -16,18 +17,9 @@ begin
   #
 
   config = {}
-  save = {}
 
   open("config.yaml") do |f|
     config = YAML.load(f)
-  end
-
-  if File.exist?("save.yaml")
-    open("save.yaml") do |f|
-      save = YAML.load(f)
-    end
-  else
-    save = {'ids' => []}
   end
 
 
@@ -43,8 +35,9 @@ begin
     raise StandardError
   end
 
-  id = "#{screen_name}-#{Time.now.to_i}".delete("\n\r")
-  save['ids'].push id
+  time = Time.now
+  id = "#{screen_name}-#{time.to_i}".delete("\n\r")
+  Posts.create(:pid => id, :time => time, :screen_name => screen_name)
 
   image_url = "saved_images/#{id}.png"
 
@@ -53,10 +46,6 @@ begin
   )
 
   File.binwrite(image_url, image_data)
-
-  open("save.yaml", "w") do |f|
-    f.write save.to_yaml
-  end
 
   print cgi.header( { 
     "status"     => "REDIRECT",

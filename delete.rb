@@ -6,23 +6,9 @@ require 'erb'
 require 'yaml'
 
 require_relative 'functions'
+require_relative 'database'
 
 begin
-
-  #
-  # load configs
-  #
-
-  save = {}
-
-  if File.exist?("save.yaml")
-    open("save.yaml") do |f|
-      save = YAML.load(f)
-    end
-  else
-    raise StandardError
-  end
-
 
   #
   # main
@@ -36,15 +22,12 @@ begin
     raise StandardError
   end
 
-  save['ids'] -= [id]
+  #save['ids'] -= [id]
+  Posts.delete_all(:pid => id)
 
   image_url = "saved_images/#{id}.png"
 
   File.delete(image_url)
-
-  open("save.yaml", "w") do |f|
-    f.write save.to_yaml
-  end
 
   print cgi.header( { 
     "status"     => "REDIRECT",

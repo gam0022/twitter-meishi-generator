@@ -7,14 +7,14 @@ require 'yaml'
 require 'time'
 
 require_relative 'functions'
+require_relative 'database'
 
 class View
 
-  def initialize(image_url, id, base_url, save)
-    @image_url = image_url
-    @id = id
+  def initialize(base_url, post, posts)
     @base_url = base_url
-    @save = save
+    @post = post
+    @posts = posts
   end
 
   extend ERB::DefMethod
@@ -29,18 +29,9 @@ begin
   #
 
   config = {}
-  save = {}
 
   open("config.yaml") do |f|
     config = YAML.load(f)
-  end
-
-  if File.exist?("save.yaml")
-    open("save.yaml") do |f|
-      save = YAML.load(f)
-    end
-  else
-    save = {'ids' => []}
   end
 
 
@@ -53,21 +44,14 @@ begin
   print cgi.header("charset"=>"UTF-8")
 
   id = cgi.params["id"][0]
-
-  # id が省略されたら、最後の名刺を表示する。
-  if !id
-    id = save['ids'][-1]
-  end
-  
-  id = id.delete("\n\r")
-
-  if !(id =~ /^[a-zA-Z0-9_]+-\d+$/)
+  if id && !(id =~ /^[a-zA-Z0-9_]+-\d+$/)
     raise StandardError
   end
 
-  image_url = "saved_images/#{id}.png"
+  # id が省略されたら、最後の名刺を表示する。
+  post = id ? Posts.find_by_pid(id) : Posts.last
 
-  print View.new(image_url, id, config['base_url'], save).to_html
+  print View.new(config['base_url'], post, Posts.all).to_html
 
 rescue => e
   exception_handling(e, 'logs/show.rb.log') 
