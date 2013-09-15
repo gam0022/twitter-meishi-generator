@@ -22,7 +22,6 @@ begin
     raise StandardError
   end
 
-  #save['ids'] -= [id]
   Posts.delete_all(:pid => id)
 
   image_url = "saved_images/#{id}.png"
@@ -37,4 +36,3 @@ begin
 rescue => e
   exception_handling(e, 'logs/delete.rb.log') 
 end
-
