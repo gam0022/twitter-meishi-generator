@@ -36,9 +36,9 @@ begin
     raise StandardError
   end
 
-  time = Time.now.to_s
+  time = Time.now
   id = "#{screen_name}-#{time.to_i}".delete("\n\r")
-  Posts.create(:pid => id, :time => time, :screen_name => screen_name)
+  Posts.create(:pid => id, :time => time.to_s, :screen_name => screen_name)
 
   image_url = "saved_images/#{id}.png"
 

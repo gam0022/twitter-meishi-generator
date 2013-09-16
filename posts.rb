@@ -36,11 +36,11 @@ class Posts
   end
 
   def Posts.last()
-    result = []
+    result = {}
     Posts.open do |db|
-      result = db.execute("select * from posts order by id desc limit 1")
+      result = db.get_first_row("select * from posts order by id desc limit 1")
     end
-    return result[0]
+    return result
   end
 
   def Posts.all()
