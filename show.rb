@@ -7,7 +7,8 @@ require 'yaml'
 require 'time'
 
 require_relative 'functions'
-require_relative 'database'
+#require_relative 'database'
+require_relative 'posts'
 
 class View
 

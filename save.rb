@@ -8,7 +8,8 @@ require 'base64'
 require 'time'
 
 require_relative 'functions'
-require_relative 'database'
+#require_relative 'database'
+require_relative 'posts'
 
 begin
 
@@ -35,7 +36,7 @@ begin
     raise StandardError
   end
 
-  time = Time.now
+  time = Time.now.to_s
   id = "#{screen_name}-#{time.to_i}".delete("\n\r")
   Posts.create(:pid => id, :time => time, :screen_name => screen_name)
 

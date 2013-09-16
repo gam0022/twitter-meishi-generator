@@ -6,7 +6,8 @@ require 'erb'
 require 'yaml'
 
 require_relative 'functions'
-require_relative 'database'
+#require_relative 'database'
+require_relative 'posts'
 
 begin
 

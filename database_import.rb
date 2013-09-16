@@ -1,7 +1,10 @@
 #! /usr/bin/ruby2.0
 # coding: utf-8
 
-require_relative 'database'
+require 'yaml'
+
+#require_relative 'database'
+require_relative 'posts'
 
 #id = "5723058-gam0022"
 #time = Time.now
@@ -23,7 +26,7 @@ end
 
 save['ids'].each do |id|
   screen_name, timei = id.split('-')
-  time = Time.at(timei.to_i)
+  time = Time.at(timei.to_i).to_s
   Posts.create(:pid => id, :time => time, :screen_name => screen_name)
 end
 
