@@ -102,6 +102,15 @@ function apply_screen_name() {
     return;
   }
 
+  // Now Loading
+  var loading = {};
+  loading.background_image_url = "background_images/design_a.png";
+  loading.screen_name = "Now_Loading"
+  loading.profile_image_local_url = "images/loading.png";
+  loading.name = "Now Loading...";
+  loading.description = "Now Loading...";
+  excute_draw(loading);
+
   $.post(
       "twitter.rb",
       {"screen_name": screen_name},
