@@ -1,7 +1,9 @@
-#! /usr/bin/ruby2.0
+#! /usr/bin/ruby2.3.3
 # coding: utf-8
 
-require 'MeCab'
+ENV['MECAB_PATH']='/usr/lib/libmecab.so.2'
+require 'natto'
+
 require 'kconv'
 
 #
@@ -12,13 +14,17 @@ class Summary
 
   def initialize()
     @data = []
-    @mecab = MeCab::Tagger.new("-Owakati")
+    @mecab = Natto::MeCab.new
     @heads = []
   end
 
   def learn(text)
     # mecabで形態素解析して、 参照テーブルを作る
-    ary = @mecab.parse(text + "EOS").split(" ")
+    ary = []
+    @mecab.parse(text + " EOS") do |n|
+      ary << n.surface
+    end
+
     @heads.push ({'head' => ary[0]})
     ary.each_cons(2) do |a| 
       @data.push h = {'head' => a[0], 'end' => a[1]}
@@ -31,14 +37,14 @@ class Summary
     t1 = head['head']
     new_text = t1
     while true
-      _a = Array.new
+      _a = []
       @data.each do |hash|
         _a.push hash if hash['head'] == t1
       end 
 
       break if _a.size == 0
       num = rand(_a.size) # 乱数で次の文節を決定する
-      new_text = new_text.eappend _a[num]['end']
+      new_text = new_text.scrub!("").eappend _a[num]['end'].scrub!("")
       break if _a[num]['end'] == "EOS"
       t1 = _a[num]['end']
     end
@@ -58,7 +64,7 @@ class Summary2
 
   def initialize()
     @data = []
-    @mecab = MeCab::Tagger.new("-Owakati")
+    @mecab = Natto::MeCab.new
     @heads = []
   end
 
