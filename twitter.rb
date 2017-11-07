@@ -36,10 +36,10 @@ begin
   end
 
   client = Twitter::REST::Client.new do |c|
-    c.consumer_key       = config['oauth']['ConsumerKey']
-    c.consumer_secret    = config['oauth']['ConsumerSecret']
-    c.oauth_token        = config['oauth']['OauthToken']
-    c.oauth_token_secret = config['oauth']['OauthTokenSecret']
+    c.consumer_key        = config['oauth']['consumer_key']
+    c.consumer_secret     = config['oauth']['consumer_secret']
+    c.access_token        = config['oauth']['access_token']
+    c.access_token_secret = config['oauth']['access_token_secret']
   end
 
   cgi = CGI.new
