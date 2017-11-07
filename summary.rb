@@ -44,7 +44,7 @@ class Summary
 
       break if _a.size == 0
       num = rand(_a.size) # 乱数で次の文節を決定する
-      new_text = new_text.scrub!("").eappend _a[num]['end'].scrub!("")
+      new_text = new_text.eappend _a[num]['end']
       break if _a[num]['end'] == "EOS"
       t1 = _a[num]['end']
     end
@@ -70,7 +70,11 @@ class Summary2
 
   def learn(text)
     # mecabで形態素解析して、 参照テーブルを作る
-    ary = @mecab.parse(text + "EOS").split(" ")
+    ary = []
+    @mecab.parse(text + " EOS") do |n|
+      ary << n.surface
+    end
+
     @heads.push ({'head' => ary[0], 'middle' => ary[1]})
     ary.each_cons(3) do |a| 
       @data.push h = {'head' => a[0], 'middle' => a[1], 'end' => a[2]}
@@ -84,7 +88,7 @@ class Summary2
     t2 = head['middle']
     new_text = t1.eappend t2  
     while true
-      _a = Array.new
+      _a = []
       @data.each do |hash|
         _a.push hash if hash['head'] == t1 && hash['middle'] == t2
       end 
@@ -118,7 +122,9 @@ class String
   # 英単語の場合、スペースをはさんで結合
   #
   def eappend(text)
-    (text =~ /^\w+$/ && !self.empty?) ? "#{self} #{text}" : self+text
+    a = self.scrub("")
+    b = text.scrub("")
+    (b =~ /^\w+$/ && !a.empty?) ? "#{a} #{b}" : a + b
   end
 
 end
