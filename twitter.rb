@@ -1,4 +1,4 @@
-#! /usr/bin/ruby2.0
+#! /usr/bin/ruby2.3.3
 # coding: utf-8
 
 require 'twitter'
@@ -19,8 +19,7 @@ def wget(url, filename)
 end
 
 def download_progile_image(user)
-  #url = user.profile_image_url.sub('normal', 'bigger')
-  url = user.profile_image_url.sub('_normal', '')
+  url = user.profile_image_url.to_s.sub('_normal', '')
   ext = File.extname(url)
   id  = user.id
   dst = "profile_images/#{id}#{ext}"
@@ -36,12 +35,12 @@ begin
     config = YAML.load(f)
   end
 
-  client = Twitter::Client.new(
-    :consumer_key       => config['oauth']['ConsumerKey'],
-    :consumer_secret    => config['oauth']['ConsumerSecret'],
-    :oauth_token        => config['oauth']['OauthToken'],
-    :oauth_token_secret => config['oauth']['OauthTokenSecret']
-  )
+  client = Twitter::REST::Client.new do |c|
+    c.consumer_key        = config['oauth']['consumer_key']
+    c.consumer_secret     = config['oauth']['consumer_secret']
+    c.access_token        = config['oauth']['access_token']
+    c.access_token_secret = config['oauth']['access_token_secret']
+  end
 
   cgi = CGI.new
   print cgi.header("charset"=>"UTF-8")
@@ -52,7 +51,6 @@ begin
     raise StandardError
   end
 
-  #user = client.user(screen_name)
   timeline = client.user_timeline(screen_name, {:count => 200})
 
   summary = Summary.new()

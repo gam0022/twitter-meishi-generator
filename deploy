@@ -1,1 +1,1 @@
-rsync -avze 'ssh -p 3843' --delete --exclude-from './rsync-exclude' ./ root@gam0022.net:/var/www/html/app/tmg
+rsync --iconv=UTF-8-MAC,UTF-8 -avzc --delete --exclude-from=rsync-exclude ./ g22:/var/www/html/app/tmg

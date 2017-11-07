@@ -1,4 +1,4 @@
-#! /usr/bin/ruby2.0
+#! /usr/bin/ruby2.3.3
 # coding: utf-8
 
 require 'yaml'
