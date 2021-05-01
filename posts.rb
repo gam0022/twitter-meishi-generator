@@ -46,7 +46,7 @@ class Posts
   def Posts.all()
     result = []
     Posts.open do |db|
-      result = db.execute("select * from posts")
+      result = db.execute("select * from posts where screen_name != 'empty'")
     end
     return result
   end
